@@ -1,0 +1,5 @@
+FinalAPI/.vs/*
+FinalAPI/FinalAPI/bin/*
+FinalAPI/FinalAPI/obj/*
+node_modules
+.DS_Store
