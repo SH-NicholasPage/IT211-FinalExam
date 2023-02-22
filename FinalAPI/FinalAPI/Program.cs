@@ -1,11 +1,13 @@
+using System.Reflection;
+
 namespace FinalAPI
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            TempDBContext.FillBlogsWithDummyData();
             TempDBContext.FillWithDummyProfiles();
+            TempDBContext.FillBlogsWithDummyData();
             
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +16,11 @@ namespace FinalAPI
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerGen(options =>
+            {
+                String xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+            });
 
             WebApplication app = builder.Build();
 

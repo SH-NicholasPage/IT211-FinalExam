@@ -12,7 +12,7 @@ namespace FinalAPI
             BlogPosts.AddRange(new List<BlogPost>{ new BlogPost
             {
                 Id = 1,
-                PosterAccountId = 1,
+                PosterAccount = Profiles[0],
                 Body = "This is a test blog post",
                 DateTimePosted = DateTime.Parse("2021-01-01 12:00:00"),
                 Likes = 12,
@@ -25,7 +25,7 @@ namespace FinalAPI
             new BlogPost
             {
                 Id = 2,
-                PosterAccountId = 1,
+                PosterAccount = Profiles[0],
                 Body = "This is another test blog post",
                 DateTimePosted = DateTime.Parse("2022-01-01 12:00:00"),
                 Likes = 9,
@@ -38,7 +38,7 @@ namespace FinalAPI
             new BlogPost
             {
                 Id = 3,
-                PosterAccountId = 1,
+                PosterAccount = Profiles[0],
                 Body = "This is a third test blog post",
                 DateTimePosted = DateTime.Parse("2023-01-01 12:00:00"),
                 Likes = 8,
@@ -51,7 +51,7 @@ namespace FinalAPI
             new BlogPost
             {
                 Id = 4,
-                PosterAccountId = 2,
+                PosterAccount = Profiles[1],
                 Body = "Wife took my fishing rods >:(",
                 DateTimePosted = DateTime.Parse("2020-02-12 13:01:56"),
                 Likes = 30,
@@ -64,7 +64,7 @@ namespace FinalAPI
             new BlogPost
             {
                 Id = 5,
-                PosterAccountId = 2,
+                PosterAccount = Profiles[1],
                 Body = "gots me beear in my beard. hahaha fishing 2 btw!!",
                 DateTimePosted = DateTime.Parse("2020-04-08 16:48:32"),
                 Likes = 3354,
@@ -82,7 +82,7 @@ namespace FinalAPI
             new BlogPost
             {
                 Id = 6,
-                PosterAccountId = 2,
+                PosterAccount = Profiles[1],
                 Body = "HEYUP, whered all these dang people come from",
                 DateTimePosted = DateTime.Parse("2020-04-09 08:11:10"),
                 Likes = 544843,
@@ -98,7 +98,7 @@ namespace FinalAPI
             new BlogPost
             {
                 Id = 7,
-                PosterAccountId = 3,
+                PosterAccount = Profiles[2],
                 Body = "I'm a cat haha jkjk. Peace be with you all.",
                 DateTimePosted = DateTime.Parse("2019-12-10 07:10:58"),
                 Likes = 7,
@@ -115,7 +115,7 @@ namespace FinalAPI
             new BlogPost
             {
                 Id = 8,
-                PosterAccountId = 3,
+                PosterAccount = Profiles[2],
                 Body = "siri go to amazon google google google google recipies google google chicken rice caserol yahoo is how to make chicken rice stop quit end stop typing what i say",
                 DateTimePosted = DateTime.Parse("2019-12-10 07:10:58"),
                 Likes = 2,
@@ -130,7 +130,7 @@ namespace FinalAPI
             new BlogPost
             {
                 Id = 9,
-                PosterAccountId = 3,
+                PosterAccount = Profiles[2],
                 Body = "husband is internet famous now!!! best, jane",
                 DateTimePosted = DateTime.Parse("2020-04-09 12:51:25"),
                 Likes = 19,

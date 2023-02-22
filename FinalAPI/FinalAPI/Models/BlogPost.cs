@@ -3,7 +3,7 @@ namespace FinalAPI.Models
     public class BlogPost
     {
         public int Id { get; set; }
-        public int PosterAccountId { get; set; }
+        public Profile PosterAccount { get; set; } = null!;//lmao
         public String Body { get; set; } = String.Empty;
         public DateTime DateTimePosted { get; set; }
         public int Likes { get; set; }
