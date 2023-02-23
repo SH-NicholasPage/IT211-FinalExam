@@ -41,7 +41,6 @@ namespace FinalAPI
                 .AllowAnyMethod()
                 .AllowAnyHeader());
 
-
             app.MapControllers();
 
             app.Run();
