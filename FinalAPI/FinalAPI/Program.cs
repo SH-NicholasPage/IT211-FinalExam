@@ -21,6 +21,7 @@ namespace FinalAPI
                 String xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
+            builder.Services.AddCors();
 
             WebApplication app = builder.Build();
 
@@ -34,6 +35,11 @@ namespace FinalAPI
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
 
             app.MapControllers();
