@@ -71,6 +71,7 @@ namespace FinalAPI.Controllers
         /// </returns>
         [HttpGet(Name = "GetAllProfiles")]
         [ActionName("GetAll")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public Object GetAll()
         {
             return Ok(TempDBService.Profiles);
@@ -87,17 +88,20 @@ namespace FinalAPI.Controllers
         /// </returns>
         [HttpPost(Name = "CreateNewProfile")]
         [ActionName("Create")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public Object Create([Required] String name, [Required] String biography, [Required] String email)
         {
+            int newId = TempDBService.Profiles.Max(p => p.Id) + 1;
+
             Profile newProfile = new Profile
             {
-                Id = TempDBService.Profiles.Max(p => p.Id) + 1,
+                Id = newId,
                 Name = name,
                 Biography = biography,
                 Email = email
             };
             TempDBService.Profiles.Add(newProfile);
-            return Ok(newProfile);
+            return CreatedAtAction(nameof(GetOne), new { id = newId }, newProfile);
         }
 
         /// <summary>
@@ -112,6 +116,8 @@ namespace FinalAPI.Controllers
         /// </returns>
         [HttpPut(Name = "EditOneProfile")]
         [ActionName("Edit")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Object Edit([Required] int id, [Required] String name, [Required] String biography, [Required] String email)
         {
             Profile? profile = TempDBService.Profiles.FirstOrDefault(p => p.Id == id);
@@ -135,6 +141,8 @@ namespace FinalAPI.Controllers
         /// </returns>
         [HttpPut(Name = "EditOneProfileName")]
         [ActionName("EditName")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Object EditName([Required] int id, [Required] String name)
         {
             Profile? profile = TempDBService.Profiles.FirstOrDefault(p => p.Id == id);
@@ -156,6 +164,8 @@ namespace FinalAPI.Controllers
         /// </returns>
         [HttpPut(Name = "EditOneProfileBiography")]
         [ActionName("EditBiography")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Object EditBiography([Required] int id, [Required] String biography)
         {
             Profile? profile = TempDBService.Profiles.FirstOrDefault(p => p.Id == id);
@@ -177,6 +187,8 @@ namespace FinalAPI.Controllers
         /// </returns>
         [HttpPut(Name = "EditOneProfileEmail")]
         [ActionName("EditEmail")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Object EditEmail([Required] int id, [Required] String email)
         {
             Profile? profile = TempDBService.Profiles.FirstOrDefault(p => p.Id == id);
@@ -197,6 +209,8 @@ namespace FinalAPI.Controllers
         /// </returns>
         [HttpDelete(Name = "DeleteOneProfile")]
         [ActionName("Delete")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Object Delete([Required] int id)
         {
             Profile? profile = TempDBService.Profiles.FirstOrDefault(p => p.Id == id);

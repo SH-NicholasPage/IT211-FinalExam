@@ -71,6 +71,7 @@ namespace FinalAPI.Controllers
         /// </returns>
         [HttpGet(Name = "GetAllBlogPosts")]
         [ActionName("GetAll")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public Object GetAll()
         {
             return Ok(TempDBService.BlogPosts);
@@ -86,6 +87,8 @@ namespace FinalAPI.Controllers
         /// </returns>
         [HttpPost(Name = "CreateNewPost")]
         [ActionName("CreatePost")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Object CreatePost([Required] int posterId, [Required] String body)
         {
             Profile? poster = TempDBService.Profiles.FirstOrDefault(p => p.Id == posterId);
@@ -94,9 +97,11 @@ namespace FinalAPI.Controllers
                 return BadRequest($"There is no profile with the ID {posterId}.");
             }
 
+            int newId = TempDBService.BlogPosts.Max(p => p.Id) + 1;
+
             BlogPost newPost = new BlogPost
             {
-                Id = TempDBService.BlogPosts.Max(p => p.Id) + 1,
+                Id = newId,
                 PosterAccount = poster,
                 Body = body,
                 DateTimePosted = DateTime.Now,
@@ -105,7 +110,7 @@ namespace FinalAPI.Controllers
             };
 
             TempDBService.BlogPosts.Add(newPost);
-            return Ok(newPost);
+            return CreatedAtAction(nameof(GetOne), new { id = newId }, newPost);
         }
 
         /// <summary>
@@ -118,6 +123,8 @@ namespace FinalAPI.Controllers
         /// </returns>
         [HttpPost(Name = "CreateNewComment")]
         [ActionName("CreateComment")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Object CreateComment([Required] int postId, [Required] String comment)
         {
             BlogPost? post = TempDBService.BlogPosts.FirstOrDefault(p => p.Id == postId);
@@ -127,7 +134,7 @@ namespace FinalAPI.Controllers
             }
 
             post.Comments.Add(comment);
-            return Ok(post);
+            return CreatedAtAction(nameof(GetOne), new { id = post.Id }, post);
         }
 
         /// <summary>
@@ -139,6 +146,8 @@ namespace FinalAPI.Controllers
         /// </returns>
         [HttpPut(Name = "LikePost")]
         [ActionName("LikePost")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Object LikePost([Required] int postId)
         {
             BlogPost? post = TempDBService.BlogPosts.FirstOrDefault(p => p.Id == postId);
@@ -161,6 +170,8 @@ namespace FinalAPI.Controllers
         /// </returns>
         [HttpPut(Name = "EditOnePost")]
         [ActionName("EditPost")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Object EditPost([Required] int postId, [Required] String newBody)
         {
             BlogPost? post = TempDBService.BlogPosts.FirstOrDefault(p => p.Id == postId);
@@ -182,6 +193,8 @@ namespace FinalAPI.Controllers
         /// </returns>
         [HttpDelete(Name = "DeleteOnePost")]
         [ActionName("DeletePost")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Object DeletePost([Required] int postId)
         {
             BlogPost? post = TempDBService.BlogPosts.FirstOrDefault(p => p.Id == postId);
@@ -204,6 +217,8 @@ namespace FinalAPI.Controllers
         /// </returns>
         [HttpDelete(Name = "DeleteOneComment")]
         [ActionName("DeleteComment")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Object DeleteComment([Required] int postId, [Required] int commentIndex)
         {
             BlogPost? post = TempDBService.BlogPosts.FirstOrDefault(p => p.Id == postId);
