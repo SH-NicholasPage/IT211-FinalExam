@@ -75,5 +75,112 @@ namespace FinalAPI.Controllers
         {
             return Ok(TempDBService.Profiles);
         }
+
+        /// <summary>
+        /// Creates a new profile
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="biography"></param>
+        /// <returns>
+        /// Returns the newly created profile
+        /// </returns>
+        [HttpPost(Name = "CreateNewProfile")]
+        [ActionName("Create")]
+        public Object Create([Required] String name, [Required] String biography)
+        {
+            Profile newProfile = new Profile
+            {
+                Id = TempDBService.Profiles.Max(p => p.Id) + 1,
+                Name = name,
+                Biography = biography
+            };
+            TempDBService.Profiles.Add(newProfile);
+            return Ok(newProfile);
+        }
+
+        /// <summary>
+        /// Edits a profile with the given ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <param name="biography"></param>
+        /// <returns>
+        /// Returns the edited profile
+        /// </returns>
+        [HttpPut(Name = "EditOneProfile")]
+        [ActionName("Edit")]
+        public Object Edit([Required] int id, [Required] String name, [Required] String biography)
+        {
+            Profile? profile = TempDBService.Profiles.FirstOrDefault(p => p.Id == id);
+            if (profile == null)
+            {
+                return BadRequest($"There is no profile with the ID {id}.");
+            }
+            profile.Name = name;
+            profile.Biography = biography;
+            return Ok(profile);
+        }
+
+        /// <summary>
+        /// Edits the name of a profile with the given ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name"></param>
+        /// <returns>
+        /// Returns the edited profile
+        /// </returns>
+        [HttpPut(Name = "EditOneProfileName")]
+        [ActionName("EditName")]
+        public Object EditName([Required] int id, [Required] String name)
+        {
+            Profile? profile = TempDBService.Profiles.FirstOrDefault(p => p.Id == id);
+            if (profile == null)
+            {
+                return BadRequest($"There is no profile with the ID {id}.");
+            }
+            profile.Name = name;
+            return Ok(profile);
+        }
+
+        /// <summary>
+        /// Edits the biography of a profile with the given ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="biography"></param>
+        /// <returns>
+        /// Returns the edited profile
+        /// </returns>
+        [HttpPut(Name = "EditOneProfileBiography")]
+        [ActionName("EditBiography")]
+        public Object EditBiography([Required] int id, [Required] String biography)
+        {
+            Profile? profile = TempDBService.Profiles.FirstOrDefault(p => p.Id == id);
+            if (profile == null)
+            {
+                return BadRequest($"There is no profile with the ID {id}.");
+            }
+            profile.Biography = biography;
+            return Ok(profile);
+        }
+
+        /// <summary>
+        /// Deletes a profile with the given ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>
+        /// Returns the deleted profile
+        /// </returns>
+        [HttpDelete(Name = "DeleteOneProfile")]
+        [ActionName("Delete")]
+        public Object Delete([Required] int id)
+        {
+            Profile? profile = TempDBService.Profiles.FirstOrDefault(p => p.Id == id);
+            if (profile == null)
+            {
+                return BadRequest($"There is no profile with the ID {id}.");
+            }
+            TempDBService.Profiles.Remove(profile);
+            return Ok(profile);
+        }
     }
 }

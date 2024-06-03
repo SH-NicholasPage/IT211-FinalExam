@@ -20,7 +20,7 @@ namespace FinalAPI
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
             builder.Services.AddCors();
-            builder.Services.AddScoped<TempDBService>();
+            builder.Services.AddSingleton<TempDBService>();
 
             WebApplication app = builder.Build();
 

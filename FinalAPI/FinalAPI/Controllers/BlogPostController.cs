@@ -75,5 +75,151 @@ namespace FinalAPI.Controllers
         {
             return Ok(TempDBService.BlogPosts);
         }
+
+        /// <summary>
+        /// Creates a new blog post
+        /// </summary>
+        /// <param name="posterId"></param>
+        /// <param name="body"></param>
+        /// <returns>
+        /// Returns the newly created blog post
+        /// </returns>
+        [HttpPost(Name = "CreateNewPost")]
+        [ActionName("CreatePost")]
+        public Object CreatePost([Required] int posterId, [Required] String body)
+        {
+            Profile? poster = TempDBService.Profiles.FirstOrDefault(p => p.Id == posterId);
+            if (poster == null)
+            {
+                return BadRequest($"There is no profile with the ID {posterId}.");
+            }
+
+            BlogPost newPost = new BlogPost
+            {
+                Id = TempDBService.BlogPosts.Max(p => p.Id) + 1,
+                PosterAccount = poster,
+                Body = body,
+                DateTimePosted = DateTime.Now,
+                Likes = 0,
+                Comments = []
+            };
+
+            TempDBService.BlogPosts.Add(newPost);
+            return Ok(newPost);
+        }
+
+        /// <summary>
+        /// Creates a new comment on a blog post
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <param name="comment"></param>
+        /// <returns>
+        /// Returns the blog post with the new comment
+        /// </returns>
+        [HttpPost(Name = "CreateNewComment")]
+        [ActionName("CreateComment")]
+        public Object CreateComment([Required] int postId, [Required] String comment)
+        {
+            BlogPost? post = TempDBService.BlogPosts.FirstOrDefault(p => p.Id == postId);
+            if (post == null)
+            {
+                return BadRequest($"There is no post with the ID {postId}.");
+            }
+
+            post.Comments.Add(comment);
+            return Ok(post);
+        }
+
+        /// <summary>
+        /// Likes a blog post
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns>
+        /// Returns the blog post with the updated like count
+        /// </returns>
+        [HttpPut(Name = "LikePost")]
+        [ActionName("LikePost")]
+        public Object LikePost([Required] int postId)
+        {
+            BlogPost? post = TempDBService.BlogPosts.FirstOrDefault(p => p.Id == postId);
+            if (post == null)
+            {
+                return BadRequest($"There is no post with the ID {postId}.");
+            }
+
+            post.Likes++;
+            return Ok(post);
+        }
+
+        /// <summary>
+        /// Edits a blog post
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <param name="newBody"></param>
+        /// <returns>
+        /// Returns the blog post with the updated body
+        /// </returns>
+        [HttpPut(Name = "EditOnePost")]
+        [ActionName("EditPost")]
+        public Object EditPost([Required] int postId, [Required] String newBody)
+        {
+            BlogPost? post = TempDBService.BlogPosts.FirstOrDefault(p => p.Id == postId);
+            if (post == null)
+            {
+                return BadRequest($"There is no post with the ID {postId}.");
+            }
+
+            post.Body = newBody;
+            return Ok(post);
+        }
+
+        /// <summary>
+        /// Deletes a blog post
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <returns>
+        /// Returns the deleted blog post
+        /// </returns>
+        [HttpDelete(Name = "DeleteOnePost")]
+        [ActionName("DeletePost")]
+        public Object DeletePost([Required] int postId)
+        {
+            BlogPost? post = TempDBService.BlogPosts.FirstOrDefault(p => p.Id == postId);
+            if (post == null)
+            {
+                return BadRequest($"There is no post with the ID {postId}.");
+            }
+
+            TempDBService.BlogPosts.Remove(post);
+            return Ok(post);
+        }
+
+        /// <summary>
+        /// Deletes a comment on a blog post
+        /// </summary>
+        /// <param name="postId"></param>
+        /// <param name="commentIndex"></param>
+        /// <returns>
+        /// Returns the deleted comment
+        /// </returns>
+        [HttpDelete(Name = "DeleteOneComment")]
+        [ActionName("DeleteComment")]
+        public Object DeleteComment([Required] int postId, [Required] int commentIndex)
+        {
+            BlogPost? post = TempDBService.BlogPosts.FirstOrDefault(p => p.Id == postId);
+            if (post == null)
+            {
+                return BadRequest($"There is no post with the ID {postId}.");
+            }
+
+            if (commentIndex < 0 || commentIndex >= post.Comments.Count)
+            {
+                return BadRequest($"There is no comment at index {commentIndex}.");
+            }
+
+            String comment = post.Comments[commentIndex];
+            post.Comments.RemoveAt(commentIndex);
+            return Ok(comment);
+        }
     }
 }
