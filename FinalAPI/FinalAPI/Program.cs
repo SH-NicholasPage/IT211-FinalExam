@@ -1,4 +1,5 @@
 using System.Reflection;
+using FinalAPI.Services;
 
 namespace FinalAPI
 {
@@ -6,9 +7,6 @@ namespace FinalAPI
     {
         public static void Main(string[] args)
         {
-            TempDBContext.FillWithDummyProfiles();
-            TempDBContext.FillBlogsWithDummyData();
-            
             WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
@@ -22,6 +20,7 @@ namespace FinalAPI
                 options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
             });
             builder.Services.AddCors();
+            builder.Services.AddScoped<TempDBService>();
 
             WebApplication app = builder.Build();
 

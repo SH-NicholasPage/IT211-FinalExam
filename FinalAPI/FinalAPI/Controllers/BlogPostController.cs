@@ -1,4 +1,5 @@
 using FinalAPI.Models;
+using FinalAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,10 +11,12 @@ namespace FinalAPI.Controllers
     public class BlogPostController : ControllerBase
     {
         private readonly ILogger<BlogPostController> _logger;
+        private TempDBService TempDBService { get; init; }
 
-        public BlogPostController(ILogger<BlogPostController> logger)
+        public BlogPostController(ILogger<BlogPostController> logger, TempDBService tempDBService)
         {
             _logger = logger;
+            TempDBService = tempDBService;
         }
 
         /// <summary>
@@ -30,9 +33,9 @@ namespace FinalAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Object Get([Required][FromQuery] int[] id)
         {
-            List<BlogPost> toReturn = new List<BlogPost>();
-            //LINQ is so cool :')
-            id.Where(x => TempDBContext.BlogPosts.Any(y => y.Id == x)).ToList().ForEach(x => toReturn.Add(TempDBContext.BlogPosts.Where(y => y.Id == x).First()));
+            List<BlogPost> toReturn = TempDBService.BlogPosts
+                .Where(b => id.Contains(b.Id))
+                .ToList();
             return toReturn.Count > 0 ? Ok(toReturn) : BadRequest("No blog posts found with the given IDs");
         }
 
@@ -50,13 +53,13 @@ namespace FinalAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Object GetOne([Required] int id)
         {
-            if (TempDBContext.BlogPosts.Any(x => x.Id == id) == false)
+            if (TempDBService.BlogPosts.Any(x => x.Id == id) == false)
             {
                 return BadRequest($"There is no post with the ID {id}.");
             }
             else
             {
-                return Ok(TempDBContext.BlogPosts.Where(x => x.Id == id).ToList());
+                return Ok(TempDBService.BlogPosts.Where(x => x.Id == id).ToList());
             }
         }
 
@@ -70,7 +73,7 @@ namespace FinalAPI.Controllers
         [ActionName("GetAll")]
         public Object GetAll()
         {
-            return Ok(TempDBContext.BlogPosts);
+            return Ok(TempDBService.BlogPosts);
         }
     }
 }

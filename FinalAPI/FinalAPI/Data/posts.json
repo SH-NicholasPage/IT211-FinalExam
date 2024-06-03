@@ -1,0 +1,155 @@
+[
+  {
+    "id": 1,
+    "poster_id": 3,
+    "body": "Exploring new painting techniques and styles this summer.",
+    "date_posted": "2024-05-15 14:30:45",
+    "likes": 45,
+    "comments": [
+      "Love your work, Caroline!",
+      "Can't wait to see your new pieces."
+    ]
+  },
+  {
+    "id": 2,
+    "poster_id": 5,
+    "body": "Launching a new eco-friendly coffee blend next week!",
+    "date_posted": "2024-05-18 09:15:30",
+    "likes": 68,
+    "comments": [
+      "Looking forward to trying it!",
+      "This is fantastic news.",
+      "Great initiative!"
+    ]
+  },
+  {
+    "id": 3,
+    "poster_id": 7,
+    "body": "Our robotics club won the regional competition!",
+    "date_posted": "2024-05-20 16:45:10",
+    "likes": 52,
+    "comments": [
+      "Congratulations, Gina!",
+      "You and your students are amazing.",
+      "Inspiring work!"
+    ]
+  },
+  {
+    "id": 4,
+    "poster_id": 1,
+    "body": "Volunteering at the animal shelter brings me so much joy.",
+    "date_posted": "2024-05-22 11:20:55",
+    "likes": 33,
+    "comments": [
+      "The animals are lucky to have you.",
+      "Keep up the great work, Alexandra.",
+      "You have such a big heart!"
+    ]
+  },
+  {
+    "id": 5,
+    "poster_id": 4,
+    "body": "Discovered an amazing street food market in Bangkok.",
+    "date_posted": "2024-05-25 13:05:25",
+    "likes": 77,
+    "comments": [
+      "Can't wait to read about it!",
+      "Your travel tips are always the best.",
+      "Sounds delicious, David!",
+      "Bangkok street food is the best.",
+      "Hope you had an amazing time!"
+    ]
+  },
+  {
+    "id": 6,
+    "poster_id": 9,
+    "body": "Just completed a new branding project for a local startup.",
+    "date_posted": "2024-05-28 10:55:40",
+    "likes": 49,
+    "comments": [
+      "You're so talented, Isabella.",
+      "Amazing work as always!",
+      "The startup is lucky to have you."
+    ]
+  },
+  {
+    "id": 7,
+    "poster_id": 2,
+    "body": "Had a blast at the weekend hackathon. Learned so much!",
+    "date_posted": "2024-05-30 17:25:00",
+    "likes": 58,
+    "comments": [
+      "Hackathons are the best.",
+      "Congrats on your project, Bryan!",
+      "Keep pushing the limits.",
+      "What's your next project?"
+    ]
+  },
+  {
+    "id": 8,
+    "poster_id": 6,
+    "body": "Captured some breathtaking shots of the Serengeti wildlife.",
+    "date_posted": "2024-06-01 07:15:50",
+    "likes": 72,
+    "comments": [
+      "Your photos are stunning!",
+      "I feel like I'm there.",
+      "Keep sharing these amazing moments.",
+      "Nature is truly beautiful."
+    ]
+  },
+  {
+    "id": 9,
+    "poster_id": 10,
+    "body": "Finished my first triathlon of the year! Feeling accomplished.",
+    "date_posted": "2024-06-02 06:45:35",
+    "likes": 63,
+    "comments": [
+      "Way to go, Jack!",
+      "You're an inspiration.",
+      "Congrats on the achievement!",
+      "Triathlons are tough, great job!"
+    ]
+  },
+  {
+    "id": 10,
+    "poster_id": 8,
+    "body": "Analyzing new market trends for the upcoming quarter.",
+    "date_posted": "2024-06-02 12:00:00",
+    "likes": 39,
+    "comments": [
+      "Your insights are always spot on.",
+      "Can't wait to see your analysis.",
+      "Great work, Henry!"
+    ]
+  },
+  {
+    "id": 11,
+    "poster_id": 5,
+    "body": "Excited to announce our new sustainability initiative!",
+    "date_posted": "2024-06-03 10:10:10",
+    "likes": 54,
+    "comments": [
+      "This is amazing news!",
+      "Your dedication is inspiring.",
+      "Another reason to love your coffee shops.",
+      "Looking forward to seeing the impact.",
+      "Great job, Eleanor!"
+    ]
+  },
+  {
+    "id": 12,
+    "poster_id": 7,
+    "body": "Summer robotics camp registration is now open.",
+    "date_posted": "2024-06-04 09:45:15",
+    "likes": 47,
+    "comments": [
+      "My kids can't wait!",
+      "This camp changed my son's life.",
+      "Thanks for organizing this, Gina.",
+      "STEM education is so important.",
+      "You're doing great work!",
+      "Sign us up!"
+    ]
+  }
+]

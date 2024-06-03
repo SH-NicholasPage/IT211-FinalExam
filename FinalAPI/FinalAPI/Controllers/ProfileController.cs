@@ -1,4 +1,5 @@
 using FinalAPI.Models;
+using FinalAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,10 +11,12 @@ namespace FinalAPI.Controllers
     public class ProfileController : ControllerBase
     {
         private readonly ILogger<BlogPostController> _logger;
+        private TempDBService TempDBService { get; init; }
 
-        public ProfileController(ILogger<BlogPostController> logger)
+        public ProfileController(ILogger<BlogPostController> logger, TempDBService tempDBService)
         {
             _logger = logger;
+            TempDBService = tempDBService;
         }
 
         /// <summary>
@@ -30,9 +33,9 @@ namespace FinalAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Object Get([Required][FromQuery] int[] id)
         {
-            List<Profile> toReturn = new List<Profile>();
-            //LINQ is so cool :')
-            id.Where(x => TempDBContext.Profiles.Any(y => y.Id == x)).ToList().ForEach(x => toReturn.Add(TempDBContext.Profiles.Where(y => y.Id == x).First()));
+            List<Profile> toReturn = TempDBService.Profiles
+                .Where(p => id.Contains(p.Id))
+                .ToList();
             return toReturn.Count > 0 ? Ok(toReturn) : BadRequest("No profiles found with the given IDs");
         }
 
@@ -50,13 +53,13 @@ namespace FinalAPI.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public Object GetOne([Required] int id)
         {
-            if (TempDBContext.Profiles.Any(x => x.Id == id) == false)
+            if (TempDBService.Profiles.Any(x => x.Id == id) == false)
             {
                 return BadRequest($"There is no profile with the ID {id}.");
             }
             else
             {
-                return Ok(TempDBContext.Profiles.Where(x => x.Id == id).ToList());
+                return Ok(TempDBService.Profiles.Where(x => x.Id == id).ToList());
             }
         }
 
@@ -70,7 +73,7 @@ namespace FinalAPI.Controllers
         [ActionName("GetAll")]
         public Object GetAll()
         {
-            return Ok(TempDBContext.Profiles);
+            return Ok(TempDBService.Profiles);
         }
     }
 }
