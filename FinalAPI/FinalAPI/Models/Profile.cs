@@ -5,6 +5,7 @@
         public int Id { get; init; }
         public String Name { get; set; } = String.Empty;
         public String Biography { get; set; } = String.Empty;
+        public String Email { get; set; } = String.Empty;
 
         public override String ToString()
         {

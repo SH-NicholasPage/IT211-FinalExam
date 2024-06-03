@@ -2,51 +2,61 @@
   {
     "id": 1,
     "name": "Alexandra Nolan",
-    "biography": "I am a passionate environmentalist dedicated to wildlife conservation. In my free time, I enjoy hiking and volunteering at the local animal shelter."
+    "biography": "I am a passionate environmentalist dedicated to wildlife conservation. In my free time, I enjoy hiking and volunteering at the local animal shelter.",
+    "email": "alexandra@example.com"
   },
   {
     "id": 2,
     "name": "Bryan Walker",
-    "biography": "I am a skilled software developer with a love for gaming. I spend my weekends working on indie game projects and participating in hackathons."
+    "biography": "I am a skilled software developer with a love for gaming. I spend my weekends working on indie game projects and participating in hackathons.",
+    "email": "bryan@example.com"
   },
   {
     "id": 3,
     "name": "Caroline Ramirez",
-    "biography": "As a dedicated nurse, I focus on community health. In my spare time, I love painting and exploring local art galleries."
+    "biography": "As a dedicated nurse, I focus on community health. In my spare time, I love painting and exploring local art galleries.",
+    "email": "caroline@example.com"
   },
   {
     "id": 4,
     "name": "David Kim",
-    "biography": "I am an avid traveler and food blogger, documenting my culinary adventures around the world. I love sharing recipes and travel tips with my followers."
+    "biography": "I am an avid traveler and food blogger, documenting my culinary adventures around the world. I love sharing recipes and travel tips with my followers.",
+    "email": "david@example.com"
   },
   {
     "id": 5,
     "name": "Eleanor Brooks",
-    "biography": "I am a successful entrepreneur owning a chain of eco-friendly coffee shops. I advocate for sustainable business practices and enjoy mentoring young business owners."
+    "biography": "I am a successful entrepreneur owning a chain of eco-friendly coffee shops. I advocate for sustainable business practices and enjoy mentoring young business owners.",
+    "email": "eleanor@example.com"
   },
   {
     "id": 6,
     "name": "Felix Johnson",
-    "biography": "I am a professional photographer specializing in wildlife and nature. My work has been featured in numerous international magazines and exhibitions."
+    "biography": "I am a professional photographer specializing in wildlife and nature. My work has been featured in numerous international magazines and exhibitions.",
+    "email": "felix@example.com"
   },
   {
     "id": 7,
     "name": "Gina Patel",
-    "biography": "As a passionate educator, I teach high school science and run an after-school robotics club. I love inspiring students to pursue STEM careers."
+    "biography": "As a passionate educator, I teach high school science and run an after-school robotics club. I love inspiring students to pursue STEM careers.",
+    "email": "gina@example.com"
   },
   {
     "id": 8,
     "name": "Henry Zhang",
-    "biography": "I am a financial analyst with a knack for market trends. Outside of work, I enjoy playing chess and have competed in several national tournaments."
+    "biography": "I am a financial analyst with a knack for market trends. Outside of work, I enjoy playing chess and have competed in several national tournaments.",
+    "email": "henry@example.com"
   },
   {
     "id": 9,
     "name": "Isabella Martinez",
-    "biography": "I am a talented graphic designer known for my innovative branding projects. I enjoy creating digital art and volunteering at local art workshops."
+    "biography": "I am a talented graphic designer known for my innovative branding projects. I enjoy creating digital art and volunteering at local art workshops.",
+    "email": "isabella@example.com"
   },
   {
     "id": 10,
     "name": "Jack Thompson",
-    "biography": "I am a fitness enthusiast and personal trainer, helping clients achieve their health goals. I also participate in local triathlons as an amateur athlete."
+    "biography": "I am a fitness enthusiast and personal trainer, helping clients achieve their health goals. I also participate in local triathlons as an amateur athlete.",
+    "email": "jack@example.com"
   }
 ]

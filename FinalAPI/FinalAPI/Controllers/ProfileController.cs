@@ -81,18 +81,20 @@ namespace FinalAPI.Controllers
         /// </summary>
         /// <param name="name"></param>
         /// <param name="biography"></param>
+        /// <param name="email"></param>
         /// <returns>
         /// Returns the newly created profile
         /// </returns>
         [HttpPost(Name = "CreateNewProfile")]
         [ActionName("Create")]
-        public Object Create([Required] String name, [Required] String biography)
+        public Object Create([Required] String name, [Required] String biography, [Required] String email)
         {
             Profile newProfile = new Profile
             {
                 Id = TempDBService.Profiles.Max(p => p.Id) + 1,
                 Name = name,
-                Biography = biography
+                Biography = biography,
+                Email = email
             };
             TempDBService.Profiles.Add(newProfile);
             return Ok(newProfile);
@@ -104,12 +106,13 @@ namespace FinalAPI.Controllers
         /// <param name="id"></param>
         /// <param name="name"></param>
         /// <param name="biography"></param>
+        /// <param name="email"></param>
         /// <returns>
         /// Returns the edited profile
         /// </returns>
         [HttpPut(Name = "EditOneProfile")]
         [ActionName("Edit")]
-        public Object Edit([Required] int id, [Required] String name, [Required] String biography)
+        public Object Edit([Required] int id, [Required] String name, [Required] String biography, [Required] String email)
         {
             Profile? profile = TempDBService.Profiles.FirstOrDefault(p => p.Id == id);
             if (profile == null)
@@ -118,6 +121,7 @@ namespace FinalAPI.Controllers
             }
             profile.Name = name;
             profile.Biography = biography;
+            profile.Email = email;
             return Ok(profile);
         }
 
@@ -160,6 +164,27 @@ namespace FinalAPI.Controllers
                 return BadRequest($"There is no profile with the ID {id}.");
             }
             profile.Biography = biography;
+            return Ok(profile);
+        }
+
+        /// <summary>
+        /// Edits the email of a profile with the given ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="email"></param>
+        /// <returns>
+        /// Returns the edited profile
+        /// </returns>
+        [HttpPut(Name = "EditOneProfileEmail")]
+        [ActionName("EditEmail")]
+        public Object EditEmail([Required] int id, [Required] String email)
+        {
+            Profile? profile = TempDBService.Profiles.FirstOrDefault(p => p.Id == id);
+            if (profile == null)
+            {
+                return BadRequest($"There is no profile with the ID {id}.");
+            }
+            profile.Email = email;
             return Ok(profile);
         }
 
